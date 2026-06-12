@@ -1,46 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My To-Do List</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-
-    <div class="container">
-
-        <div class="todo-card">
-
-            <h1>✨ My Tasks</h1>
-            <p class="subtitle">Stay focused. Get things done.</p>
-
-            <div class="input-box">
-                <input
-                    type="text"
-                    id="taskInput"
-                    placeholder="Add a new task..."
-                >
-
-                <button id="addBtn">
-                    Add
-                </button>
-            </div>
-
-            <ul id="taskList"></ul>
-
-        </div>
-
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
-
-style.css=*{
+*{
     margin:0;
     padding:0;
     box-sizing:border-box;
@@ -53,41 +11,66 @@ body{
     justify-content:center;
     align-items:center;
 
-    background:linear-gradient(
-        135deg,
-        #667eea,
-        #764ba2
-    );
+    background:#0a0a0a;
 
     padding:20px;
 }
 
+/* Main Container */
+
 .container{
     width:100%;
-    max-width:500px;
+    max-width:550px;
 }
+
+/* Card */
 
 .todo-card{
-    background:white;
-    border-radius:20px;
+    background:#111111;
 
-    padding:30px;
+    border:1px solid #222;
+
+    border-radius:24px;
+
+    padding:35px;
 
     box-shadow:
-    0 10px 30px rgba(0,0,0,0.15);
+    0 0 0 1px rgba(255,255,255,0.03),
+    0 20px 50px rgba(0,0,0,0.6);
+
+    transition:0.3s ease;
 }
+
+.todo-card:hover{
+    transform:translateY(-2px);
+}
+
+/* Heading */
 
 h1{
     text-align:center;
-    color:#333;
+
+    color:white;
+
+    font-size:2.2rem;
+    font-weight:600;
+    letter-spacing:1px;
 }
 
 .subtitle{
     text-align:center;
-    color:#777;
-    margin-top:8px;
-    margin-bottom:25px;
+
+    color:#8a8a8a;
+
+    margin-top:10px;
+    margin-bottom:35px;
+
+    font-size:0.95rem;
+
+    letter-spacing:0.5px;
 }
+
+/* Input Section */
 
 .input-box{
     display:flex;
@@ -97,29 +80,43 @@ h1{
 .input-box input{
     flex:1;
 
-    padding:14px;
+    background:#181818;
 
-    border:2px solid #e5e5e5;
-    border-radius:12px;
+    color:white;
+
+    border:1px solid #2a2a2a;
+
+    border-radius:14px;
+
+    padding:15px 18px;
 
     outline:none;
+
     font-size:15px;
+
+    transition:0.3s;
+}
+
+.input-box input::placeholder{
+    color:#666;
 }
 
 .input-box input:focus{
-    border-color:#667eea;
+    border-color:#ffffff;
 }
 
 .input-box button{
     border:none;
-    outline:none;
 
-    padding:14px 20px;
+    background:white;
 
-    border-radius:12px;
+    color:black;
 
-    background:#667eea;
-    color:white;
+    font-weight:600;
+
+    padding:15px 24px;
+
+    border-radius:14px;
 
     cursor:pointer;
 
@@ -127,70 +124,91 @@ h1{
 }
 
 .input-box button:hover{
-    background:#5366d6;
+    background:#d9d9d9;
 }
 
+/* Task List */
+
 #taskList{
-    margin-top:25px;
+    margin-top:30px;
 }
+
+/* Task Item */
 
 #taskList li{
     list-style:none;
 
-    background:#f5f7ff;
+    background:#171717;
+
+    border:1px solid #222;
+
+    color:white;
 
     margin-bottom:12px;
 
-    padding:14px 45px 14px 18px;
+    padding:16px 48px 16px 20px;
 
-    border-radius:12px;
-
-    cursor:pointer;
+    border-radius:14px;
 
     position:relative;
 
-    transition:0.3s;
+    cursor:pointer;
 
-    animation:slideIn 0.3s ease;
+    transition:0.25s ease;
+
+    animation:fadeUp .3s ease;
 }
 
 #taskList li:hover{
-    transform:translateY(-2px);
+    border-color:#444;
+    transform:translateX(4px);
 }
 
+/* Completed Task */
+
 #taskList li.completed{
+    color:#666;
+
     text-decoration:line-through;
-    color:#888;
-    background:#ececec;
+
+    background:#121212;
 }
+
+/* Delete Button */
 
 .delete-btn{
     position:absolute;
 
-    right:12px;
+    right:14px;
     top:50%;
 
     transform:translateY(-50%);
 
     border:none;
+
     background:none;
 
-    cursor:pointer;
+    color:#888;
 
     font-size:20px;
 
-    color:#888;
+    cursor:pointer;
+
+    transition:0.3s;
 }
 
 .delete-btn:hover{
-    color:red;
+    color:white;
+    transform:translateY(-50%) scale(1.15);
 }
 
-@keyframes slideIn{
+/* Animation */
+
+@keyframes fadeUp{
 
     from{
         opacity:0;
-        transform:translateY(10px);
+        transform:translateY(12px);
     }
 
     to{
@@ -199,10 +217,16 @@ h1{
     }
 }
 
+/* Mobile */
+
 @media(max-width:500px){
 
     .todo-card{
-        padding:20px;
+        padding:25px;
+    }
+
+    h1{
+        font-size:1.8rem;
     }
 
     .input-box{
